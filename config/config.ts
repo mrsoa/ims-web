@@ -32,11 +32,11 @@ const plugins: IPlugin[] = [
       },
       pwa: pwa
         ? {
-            workboxPluginMode: 'InjectManifest',
-            workboxOptions: {
-              importWorkboxFrom: 'local',
-            },
-          }
+          workboxPluginMode: 'InjectManifest',
+          workboxOptions: {
+            importWorkboxFrom: 'local',
+          },
+        }
         : false, // default close dll, because issue https://github.com/ant-design/ant-design-pro/issues/4665
       // dll features https://webpack.js.org/plugins/dll-plugin/
       // dll: {
@@ -141,7 +141,6 @@ export default {
                   path: '/system/demo',
                   component: './system/demo/demo',
                 },
-                
               ],
             },
             {
@@ -160,6 +159,12 @@ export default {
                   icon: 'plus-square',
                   path: '/process/add',
                   component: './process/add',
+                },
+                {
+                  name: '功能列表',
+                  icon: 'function',
+                  path: '/process/functionlist',
+                  component: './process/FunctionList',
                 },
               ],
             },
@@ -234,29 +239,26 @@ export default {
   // },
   proxy: {
     '/api/system/': {
-      //target: 'http://localhost:8300/',
+      target: 'http://localhost:8300/',
       //target: 'http://tomcat.mrsoa.com:8300/',
       //target: 'http://10.0.254.5:8300/',
-      target: 'https://ims.51eanj.com/system',
+      //target: 'https://ims.51eanj.com/system',
       changeOrigin: true,
       pathRewrite: {
         '^/api/system': '',
       },
     },
     '/api/database/': {
-      //target: 'http://localhost:8200/',
+      target: 'http://localhost:8200/dts/',
       //target: 'http://tomcat.mrsoa.com:8200/',
-      target: 'http://10.0.254.5:8200/',
+      //target: '120.78.149.61:9993/dts',
       //target: 'https://ims.51eanj.com/dts/',
       changeOrigin: true,
-      pathRewrite: {
-        '^/api/database': '',
-      },
+      pathRewrite: {},
     },
     '/api/process/': {
-      //target: 'http://localhost:8400/',
-      //target: 'http://tomcat.mrsoa.com:8400/',
-      target: 'http://120.78.149.61:9992/',
+      target: 'http://localhost:8400/',
+      //target: 'http://120.78.149.61:9992',
       //target: 'https://ims.51eanj.com/process/',
       changeOrigin: true,
       pathRewrite: {

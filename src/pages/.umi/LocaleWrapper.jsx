@@ -36,7 +36,7 @@ defaultAntd = defaultAntd.default || defaultAntd;
 const localeInfo = {
   'en-US': {
     messages: {
-      ...((locale) => locale.__esModule ? locale.default : locale)(require('D:/IdeaProjects/ims-web-2019.3/src/locales/en-US.ts')),...((locale) => locale.__esModule ? locale.default : locale)(require('D:/IdeaProjects/ims-web-2019.3/src/pages/process/add/locales/en-US.ts')),
+      ...((locale) => locale.__esModule ? locale.default : locale)(require('D:/vscode/ims-web/src/locales/en-US.ts')),...((locale) => locale.__esModule ? locale.default : locale)(require('D:/vscode/ims-web/src/pages/process/add/locales/en-US.ts')),
     },
     locale: 'en-US',
     antd: require('antd/es/locale-provider/en_US'),
@@ -45,7 +45,7 @@ const localeInfo = {
   },
   'pt-BR': {
     messages: {
-      ...((locale) => locale.__esModule ? locale.default : locale)(require('D:/IdeaProjects/ims-web-2019.3/src/locales/pt-BR.ts')),...((locale) => locale.__esModule ? locale.default : locale)(require('D:/IdeaProjects/ims-web-2019.3/src/pages/process/add/locales/pt-BR.ts')),
+      ...((locale) => locale.__esModule ? locale.default : locale)(require('D:/vscode/ims-web/src/locales/pt-BR.ts')),...((locale) => locale.__esModule ? locale.default : locale)(require('D:/vscode/ims-web/src/pages/process/add/locales/pt-BR.ts')),
     },
     locale: 'pt-BR',
     antd: require('antd/es/locale-provider/pt_BR'),
@@ -54,7 +54,7 @@ const localeInfo = {
   },
   'zh-CN': {
     messages: {
-      ...((locale) => locale.__esModule ? locale.default : locale)(require('D:/IdeaProjects/ims-web-2019.3/src/locales/zh-CN.ts')),...((locale) => locale.__esModule ? locale.default : locale)(require('D:/IdeaProjects/ims-web-2019.3/src/pages/process/add/locales/zh-CN.ts')),
+      ...((locale) => locale.__esModule ? locale.default : locale)(require('D:/vscode/ims-web/src/locales/zh-CN.ts')),...((locale) => locale.__esModule ? locale.default : locale)(require('D:/vscode/ims-web/src/pages/process/add/locales/zh-CN.ts')),
     },
     locale: 'zh-CN',
     antd: require('antd/es/locale-provider/zh_CN'),
@@ -63,7 +63,7 @@ const localeInfo = {
   },
   'zh-TW': {
     messages: {
-      ...((locale) => locale.__esModule ? locale.default : locale)(require('D:/IdeaProjects/ims-web-2019.3/src/locales/zh-TW.ts')),...((locale) => locale.__esModule ? locale.default : locale)(require('D:/IdeaProjects/ims-web-2019.3/src/pages/process/add/locales/zh-TW.ts')),
+      ...((locale) => locale.__esModule ? locale.default : locale)(require('D:/vscode/ims-web/src/locales/zh-TW.ts')),...((locale) => locale.__esModule ? locale.default : locale)(require('D:/vscode/ims-web/src/pages/process/add/locales/zh-TW.ts')),
     },
     locale: 'zh-TW',
     antd: require('antd/es/locale-provider/zh_TW'),

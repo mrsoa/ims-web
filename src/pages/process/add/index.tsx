@@ -123,17 +123,22 @@ class Add extends Component<AddProps> {
               })(<Input placeholder={formatMessage({ id: 'processandadd.processCode.placeholder' })} />)}
             </FormItem>
 
-            <FormItem {...formItemLayout} label={<FormattedMessage id="processandadd.startDriver.label" />}>
-              {getFieldDecorator('startDriver', {
+            <FormItem {...formItemLayout} label={<FormattedMessage id="processandadd.environment.label" />}>
+              {getFieldDecorator('environment', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'processandadd.startDriver.required' }),
+                    message: formatMessage({ id: 'processandadd.environment.required' }),
                   },
                 ],
-              })(<Input placeholder={formatMessage({ id: 'processandadd.startDriver.placeholder' })} />)}
+              })(<Select placeholder="请选择">
+                    <Option value="DEV">DEV</Option>
+                    <Option value="TEST">TEST</Option>
+                    <Option value="PRE_PRDO">PRE_PRDO</Option>
+                    <Option value="PROD">PROD</Option>
+                  </Select>)}
             </FormItem>
-            
+
             <FormItem {...formItemLayout} label={<FormattedMessage id="processandadd.description.label" />}>
               {getFieldDecorator('description', {
                 rules: [

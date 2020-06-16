@@ -46,6 +46,8 @@ export interface ProcessUnitModel{
 	recStatus:number,
 	recVer:number,
 	startDriver:string,
-  state:"ENABLE"|"DISABLE"|"RUNNING",
+    handleType:"PROCESS"|"FEEDBACK"|"CALLBACK"|"JOB",
+    state:"ENABLE"|"DISABLE"|"RUNNING",
+    environment:"DEV"|"TEST"|"PRE"|"PROD",
   
 }

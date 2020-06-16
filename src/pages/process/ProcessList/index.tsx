@@ -269,14 +269,22 @@ class ProcessList extends Component<
     };
 
     const ListContent = ({
-      data: {state,createTime,startDriver},
+      data: {state,createTime,startDriver,handleType,environment,fileName,modifyTime,processCode},
     }: {
       data: ProcessUnitModel;
     }) => (
       <div className={styles.listContent}>
         <div className={styles.listContentItem}>
-          <span>启动类</span>
-          <p>{startDriver}</p>
+          <span>单元编码</span>
+          <p>{processCode}</p>
+        </div>
+        <div className={styles.listContentItem}>
+          <span>文件名称</span>
+          <p>{fileName}</p>
+        </div>
+        <div className={styles.listContentItem}>
+          <span>运行环境</span>
+          <p>{environment}</p>
         </div>
         <div className={styles.listContentItem}>
           <span>状态</span>
@@ -285,6 +293,10 @@ class ProcessList extends Component<
         <div className={styles.listContentItem}>
           <span>创建时间</span>
           <p>{moment(createTime).format('YYYY-MM-DD HH:mm')}</p>
+        </div>
+        <div className={styles.listContentItem}>
+          <span>修改时间</span>
+          <p>{moment(modifyTime).format('YYYY-MM-DD HH:mm')}</p>
         </div>
         
       </div>
@@ -338,12 +350,19 @@ class ProcessList extends Component<
               initialValue: current.processName,
             })(<Input placeholder="请输入" disabled/>)}
           </FormItem>
-          <FormItem label="启动类" {...this.formLayout}>
-            {getFieldDecorator('startDriver', {
-              rules: [{ required: true, message: '请输入启动类' }],
-              initialValue: current.startDriver,
-            })(<Input placeholder="请输入" disabled/>)}
+
+          <FormItem label="运行环境" {...this.formLayout}>
+            {getFieldDecorator('environment', {
+              rules: [{ required: true, message: '请输入单元名称' }],
+              initialValue: current.environment,
+            })(<Select placeholder="请选择">
+              <Select.Option value="DEV">DEV</Select.Option>
+              <Select.Option value="TEST">TEST</Select.Option>
+              <Select.Option value="PRE_PRDO">PRE_PRDO</Select.Option>
+              <Select.Option value="PROD">PROD</Select.Option>
+              </Select>)}
           </FormItem>
+
           <Form.Item {...this.formLayout}  label="上传单元">
               <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={this.normFile} noStyle>
                 <Upload.Dragger 
@@ -361,11 +380,11 @@ class ProcessList extends Component<
                 </Upload.Dragger>
               </Form.Item>
             </Form.Item>
-          <FormItem {...this.formLayout} label="单元名称">
+          <FormItem {...this.formLayout} label="单元描述">
             {getFieldDecorator('description', {
-              rules: [{ message: '请输入至少五个字符的单元名称！', min: 5 }],
+              rules: [{ message: '请输入至少五个字符的单元描述！', min: 5 }],
               initialValue: current.description,
-            })(<TextArea rows={4} placeholder="请输入至少五个字符" />)}
+            })(<TextArea rows={4} placeholder="请输入至少单元描述" />)}
           </FormItem>
         </Form>
       );

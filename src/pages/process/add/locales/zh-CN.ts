@@ -19,9 +19,9 @@ export default {
   'processandadd.description.required':'单元描述为必填项',
   'processandadd.description.placeholder':'请输入单元描述',
 
-  
-
-  
+  'processandadd.environment.label':'运行环境',
+  'processandadd.environment.required':'运行环境为必选项',
+  'processandadd.environment.placeholder':'请选择运行环境',
 
   'processandadd.email.required': '请输入邮箱地址！',
   'processandadd.email.wrong-format': '邮箱地址格式错误！',
