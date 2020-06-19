@@ -282,6 +282,65 @@ const routes = [
             ],
           },
           {
+            name: 'job',
+            icon: 'clock-circle',
+            path: '/job',
+            routes: [
+              {
+                name: '新增定时任务',
+                icon: 'file-add',
+                path: '/job/jobdefineadd',
+                component: __IS_BROWSER
+                  ? _dvaDynamic({
+                      app: require('@tmp/dva').getApp(),
+                      models: () => [
+                        import(/* webpackChunkName: 'p__job__JobDefineAdd__model.ts' */ 'D:/vscode/ims-web/src/pages/job/JobDefineAdd/model.ts').then(
+                          m => {
+                            return { namespace: 'model', ...m.default };
+                          },
+                        ),
+                      ],
+                      component: () =>
+                        import(/* webpackChunkName: "layouts__BasicLayout" */ '../job/JobDefineAdd'),
+                      LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                        .default,
+                    })
+                  : require('../job/JobDefineAdd').default,
+                exact: true,
+              },
+              {
+                name: '高级表单',
+                icon: 'smile',
+                path: '/job/formadvancedform',
+                component: __IS_BROWSER
+                  ? _dvaDynamic({
+                      app: require('@tmp/dva').getApp(),
+                      models: () => [
+                        import(/* webpackChunkName: 'p__job__FormAdvancedForm__model.ts' */ 'D:/vscode/ims-web/src/pages/job/FormAdvancedForm/model.ts').then(
+                          m => {
+                            return { namespace: 'model', ...m.default };
+                          },
+                        ),
+                      ],
+                      component: () =>
+                        import(/* webpackChunkName: "layouts__BasicLayout" */ '../job/FormAdvancedForm'),
+                      LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                        .default,
+                    })
+                  : require('../job/FormAdvancedForm').default,
+                exact: true,
+              },
+              {
+                component: () =>
+                  React.createElement(
+                    require('D:/vscode/ims-web/node_modules/_umi-build-dev@1.18.5@umi-build-dev/lib/plugins/404/NotFound.js')
+                      .default,
+                    { pagesPath: 'src/pages', hasRoutesInConfig: true },
+                  ),
+              },
+            ],
+          },
+          {
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () =>
