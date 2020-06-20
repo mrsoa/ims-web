@@ -6,3 +6,11 @@ export async function fakeSubmitForm(params: any) {
     data: params,
   });
 }
+
+export async function getFunctionSelectOptions(search: string) {
+  return request('/system/getFunctionSelectOptions', {
+    method: 'POST',
+    params: { search },
+  });
+}
+

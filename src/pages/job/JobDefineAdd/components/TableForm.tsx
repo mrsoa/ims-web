@@ -1,6 +1,6 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Divider, Input, Popconfirm, Table, message } from 'antd';
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 
 import styles from '../style.less';
 
@@ -23,6 +23,7 @@ const TableForm: FC<TableFormProps> = ({ value, onChange }) => {
   const [index, setIndex] = useState(0);
   const [cacheOriginData, setCacheOriginData] = useState({});
   const [data, setData] = useState(value);
+
 
   const getRowByKey = (key: string, newData?: TableFormDateType[]) =>
     (newData || data)?.filter((item) => item.key === key)[0];
@@ -89,7 +90,8 @@ const TableForm: FC<TableFormProps> = ({ value, onChange }) => {
         return;
       }
       const target = getRowByKey(key) || ({} as any);
-      if (!target.workId || !target.name || !target.department) {
+      console.info(target);
+      if (!target.paramName || !target.paramValue || !target.paramType) {
         message.error('请填写完整JOB变量');
         (e.target as HTMLInputElement).focus();
         setLoading(false);
@@ -104,11 +106,18 @@ const TableForm: FC<TableFormProps> = ({ value, onChange }) => {
     }, 500);
   };
 
+
+
   const handleKeyPress = (e: React.KeyboardEvent, key: string) => {
     if (e.key === 'Enter') {
       saveRow(e, key);
     }
   };
+
+  useEffect(() => {
+    //一家在就传传递这个给调用的组件
+    onChange && onChange(data);
+  }, [data])
 
   const cancel = (e: React.MouseEvent, key: string) => {
     setClickedCancel(true);

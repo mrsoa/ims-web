@@ -1,5 +1,5 @@
 import { CloseCircleOutlined } from '@ant-design/icons';
-import { Button, Card, Col, DatePicker, Form, Input, Popover, Row, Select, TimePicker } from 'antd';
+import { Button, Card, Col, DatePicker, Form, Input, Popover, Row, Select } from 'antd';
 
 import React, { FC, useState } from 'react';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
@@ -7,12 +7,12 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import TableForm from './components/TableForm';
 import FooterToolbar from './components/FooterToolbar';
 import styles from './style.less';
-import { connect } from 'dva';
+import { connect, Dispatch } from 'dva';
+import { getFunctionSelectOptions } from './service';
 
 type InternalNamePath = (string | number)[];
 
 const { Option } = Select;
-const { RangePicker } = DatePicker;
 
 const fieldLabels = {
   jobName: '定时任务编码',
@@ -42,12 +42,18 @@ interface ErrorField {
   errors: string[];
 }
 
+let timeout;
+let currentValue;
 const JobDefineAdd: FC<JobDefineAddProps> = ({
   submitting,
   dispatch,
 }) => {
   const [form] = Form.useForm();
+  const [serach, setSerach] = useState();
+  const [functionIds, setFunctionIds] = useState([]);
   const [error, setError] = useState<ErrorField[]>([]);
+  const [data, setData] = useState<>([]);
+  const [value, setValue] = useState<>(undefined);
   const getErrorInfo = (errors: ErrorField[]) => {
     const errorCount = errors.filter((item) => item.errors.length > 0).length;
     if (!errors || errorCount === 0) {
@@ -107,15 +113,59 @@ const JobDefineAdd: FC<JobDefineAddProps> = ({
     setError(errorInfo.errorFields);
   };
 
+
+  // 相关选择器内容
+  const getSelectOptions = (value, callback) => {
+
+    if (timeout) {
+      clearTimeout(timeout);
+      timeout = null;
+    }
+    currentValue = value;
+
+    const response = getFunctionSelectOptions(value);
+    console.log(response);
+    response.then((res) => {
+      res.data;
+      let values = [];
+      for (let i = 0; i < res.data.length; i++) {
+        values.push({
+          value: res.data[i].functionId,
+          text: res.data[i].functionName
+        });
+      }
+      setData(values);
+    })
+
+  }
+
+
+  const handleSearch = (value: any) => {
+    if (value) {
+      //fetch(value, data => setData(data});
+      getSelectOptions(value);
+      //setData([{value:'001',text:'abc'},{value:'002',text:'bcd'}]);
+    } else {
+      setData([]);
+    }
+  };
+
+  const handleChange = (value: any) => {
+    setValue(value);
+  };
+
+  const options = data.map((d: any) => {
+    return <Select.Option key={d.value}>{d.text}</Select.Option>
+  });
+
   return (
     <Form
       form={form}
       layout="vertical"
       hideRequiredMark
-      initialValues={{ members: tableData }}
+      initialValues={{ params: tableData }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
-      wrappedComponentRef={(form) => this.formRef = form}
     >
       <PageHeaderWrapper content="此页面用于定义定时任务的已经定时任务的参数信息">
         <Card title="定时任务定义" className={styles.card} bordered={false}>
@@ -136,9 +186,19 @@ const JobDefineAdd: FC<JobDefineAddProps> = ({
                 name="functionId"
                 rules={[{ required: true, message: '请选择功能' }]}
               >
-                <Select placeholder="请选择功能">
-                  <Option value="xiao">付晓晓</Option>
-                  <Option value="mao">周毛毛</Option>
+                <Select
+                  showSearch
+                  value="value"
+                  placeholder="请选择功能"
+                  //style={this.props.style}
+                  defaultActiveFirstOption={false}
+                  showArrow={false}
+                  filterOption={false}
+                  onSearch={handleSearch}
+                  onChange={handleChange}
+                  notFoundContent={null}
+                >
+                  {options}
                 </Select>
               </Form.Item>
             </Col>
@@ -169,14 +229,16 @@ const JobDefineAdd: FC<JobDefineAddProps> = ({
           </Row>
         </Card>
         <Card title="定时任务参数" bordered={false}>
-          <Form.Item name="members">
+          <Form.Item name="params">
             <TableForm />
           </Form.Item>
         </Card>
       </PageHeaderWrapper>
       <FooterToolbar>
         {getErrorInfo(error)}
-        <Button type="primary" onClick={() => form?.submit()} loading={submitting}>
+        <Button type="primary" onClick={() => {
+          form?.submit()
+        }} loading={submitting}>
           提交
         </Button>
       </FooterToolbar>
