@@ -22,6 +22,7 @@ const fieldLabels = {
 };
 
 const tableData: any = [
+  /** 
   {
     key: `NEW_TEMP_ID_1`,
     paramName: 'siteCode',
@@ -30,6 +31,7 @@ const tableData: any = [
     paramIndex: 1,
     description: '服务平台',
   }
+  **/
 ];
 
 interface JobDefineAddProps {

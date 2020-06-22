@@ -49,14 +49,23 @@ export default {
   'menu.editor.mind': '脑图编辑器',
   'menu.editor.koni': '拓扑编辑器',
 
-  'menu.datasource':'数据源',
+  'menu.datasource': '数据源',
 
-  'menu.system':'系统管理',
-  'menu.system.company':'企业管理',
-  'menu.system.roles':'角色管理',
-  'menu.system.user':'用户管理',
+  'menu.system': '系统管理',
+  'menu.system.company': '企业管理',
+  'menu.system.roles': '角色管理',
+  'menu.system.user': '用户管理',
+  'menu.system.card': '卡片列表',
 
-  'menu.process':'处理单元',
-  'menu.process.add':'添加单元',
-  'menu.process.list':'单元列表',
+  'menu.process': '处理单元',
+  'menu.process.add': '添加单元',
+  'menu.process.list': '单元列表',
+
+  'menu.job': '任务管理',
+  'menu.job.add': '新增任务',
+  'menu.job.list': '任务管理',
+  'menu.job.timer': '调度管理',
+
+
+  'menu.api': '接口配置',
 };

@@ -1,7 +1,7 @@
 import request from '@/utils/request';
 
 export async function fakeSubmitForm(params: any) {
-  return request('/api/forms', {
+  return request('/system/saveJobDefine', {
     method: 'POST',
     data: params,
   });

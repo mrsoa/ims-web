@@ -116,7 +116,7 @@ export default {
               authority: ['admin'],
             },
             {
-              name: '接口配置',
+              name: 'api',
               icon: 'api',
               path: '/list',
               component: './ListTableList',
@@ -139,7 +139,7 @@ export default {
                   component: './system/company/list',
                 },
                 {
-                  name: '卡片列表',
+                  name: 'card',
                   icon: 'smile',
                   path: '/system/demo',
                   component: './system/demo/demo',
@@ -164,7 +164,7 @@ export default {
                   component: './process/add',
                 },
                 {
-                  name: '功能列表',
+                  name: 'list',
                   icon: 'function',
                   path: '/process/functionlist',
                   component: './process/FunctionList',
@@ -177,10 +177,22 @@ export default {
               path: '/job',
               routes: [
                 {
-                  name: '新增定时任务',
+                  name: 'add',
                   icon: 'file-add',
                   path: '/job/jobdefineadd',
                   component: './job/JobDefineAdd',
+                },
+                {
+                  name: 'list',
+                  icon: 'calendar',
+                  path: '/job/list',
+                  component: './job/JobDefineList',
+                },
+                {
+                  name: 'timer',
+                  icon: 'schedule',
+                  path: '/job/timerlist',
+                  component: './job/TimerList',
                 },
               ],
             },

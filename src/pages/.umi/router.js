@@ -106,7 +106,7 @@ const routes = [
             exact: true,
           },
           {
-            name: '接口配置',
+            name: 'api',
             icon: 'api',
             path: '/list',
             component: __IS_BROWSER
@@ -169,7 +169,7 @@ const routes = [
                 exact: true,
               },
               {
-                name: '卡片列表',
+                name: 'card',
                 icon: 'smile',
                 path: '/system/demo',
                 component: __IS_BROWSER
@@ -250,7 +250,7 @@ const routes = [
                 exact: true,
               },
               {
-                name: '功能列表',
+                name: 'list',
                 icon: 'function',
                 path: '/process/functionlist',
                 component: __IS_BROWSER
@@ -287,7 +287,7 @@ const routes = [
             path: '/job',
             routes: [
               {
-                name: '新增定时任务',
+                name: 'add',
                 icon: 'file-add',
                 path: '/job/jobdefineadd',
                 component: __IS_BROWSER
@@ -306,6 +306,34 @@ const routes = [
                         .default,
                     })
                   : require('../job/JobDefineAdd').default,
+                exact: true,
+              },
+              {
+                name: 'list',
+                icon: 'calendar',
+                path: '/job/list',
+                component: __IS_BROWSER
+                  ? _dvaDynamic({
+                      component: () =>
+                        import(/* webpackChunkName: "layouts__BasicLayout" */ '../job/JobDefineList'),
+                      LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                        .default,
+                    })
+                  : require('../job/JobDefineList').default,
+                exact: true,
+              },
+              {
+                name: 'timer',
+                icon: 'schedule',
+                path: '/job/timerlist',
+                component: __IS_BROWSER
+                  ? _dvaDynamic({
+                      component: () =>
+                        import(/* webpackChunkName: "layouts__BasicLayout" */ '../job/TimerList'),
+                      LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                        .default,
+                    })
+                  : require('../job/TimerList').default,
                 exact: true,
               },
               {
