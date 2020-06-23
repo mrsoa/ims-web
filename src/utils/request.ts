@@ -85,7 +85,7 @@ export const DOMAIN =
 const request = extend({
   errorHandler, // 默认错误处理
   credentials: 'same-origin', // 默认请求是否带上cookie
-  prefix: `${DOMAIN}/api`,
+  prefix: `/api`,
   headers: {
     Authorization: `YIANJU ${localStorage.getItem('token')}`,
   },
