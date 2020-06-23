@@ -3,7 +3,7 @@
  * 更详细的 api 文档: https://github.com/umijs/umi-request
  */
 import { extend, RequestOptionsInit } from 'umi-request';
-import { notification,message} from 'antd';
+import { notification, message } from 'antd';
 import router from 'umi/router';
 
 const codeMessage = {
@@ -44,7 +44,7 @@ const errorHandler = (error: { response: Response }): Response | void => {
 
   if (status === 401) {
     console.info(notification);
-    message.warn("未登录或登录已过期，请重新登录!。",5);
+    message.warn("未登录或登录已过期，请重新登录!。", 5);
     notification.error({
       message: '未登录或登录已过期，请重新登录。',
     });
@@ -77,7 +77,7 @@ const errorHandler = (error: { response: Response }): Response | void => {
 };
 
 export const DOMAIN =
-  process.env.NODE_ENV === 'production' ? `http://localhost:8000` : `http://localhost:8000`;
+  process.env.NODE_ENV === 'production' ? `http://localhost:8000` : `http://tomcat.mrsoa.com`;
 
 /**
  * 配置request请求时的默认参数
