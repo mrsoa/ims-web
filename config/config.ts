@@ -265,33 +265,5 @@ export default {
   //     pathRewrite: { '^/server': '' },
   //   },
   // },
-  proxy: {
-    '/api/system/': {
-      target: 'http://localhost:8300/',
-      //target: 'http://tomcat.mrsoa.com:8300/',
-      //target: 'http://10.0.254.5:8300/',
-      //target: 'https://ims.51eanj.com/system',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/api/system': '',
-      },
-    },
-    '/api/database/': {
-      target: 'http://localhost:8200/dts/',
-      //target: 'http://tomcat.mrsoa.com:8200/',
-      //target: '120.78.149.61:9993/dts',
-      //target: 'https://ims.51eanj.com/dts/',
-      changeOrigin: true,
-      pathRewrite: {},
-    },
-    '/api/process/': {
-      target: 'http://localhost:8400/',
-      //target: 'http://120.78.149.61:9992',
-      //target: 'https://ims.51eanj.com/process/',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/api/process': '',
-      },
-    },
-  },
+
 } as IConfig;
