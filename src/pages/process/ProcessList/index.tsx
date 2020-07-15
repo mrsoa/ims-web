@@ -1,6 +1,6 @@
-import { DownOutlined, PlusOutlined, InboxOutlined } from '@ant-design/icons';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
+import { DownOutlined, PlusOutlined, InboxOutlined } from "@ant-design/icons";
+import { Form } from "@ant-design/compatible";
+import "@ant-design/compatible/assets/index.css";
 import {
   Avatar,
   Button,
@@ -19,20 +19,20 @@ import {
   Result,
   message,
   Upload,
-} from 'antd';
-import React, { Component } from 'react';
+} from "antd";
+import React, { Component } from "react";
 
-import { Dispatch } from 'redux';
-import { FormComponentProps } from '@ant-design/compatible/es/form';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'dva';
-import { findDOMNode } from 'react-dom';
-import moment from 'moment';
-import { StateType } from './model';
-import { unDeploy } from './service'
-import { BasicListItemDataType, ProcessUnitModel } from './data.d';
-import styles from './style.less';
-import request from '@/utils/request';
+import { Dispatch } from "redux";
+import { FormComponentProps } from "@ant-design/compatible/es/form";
+import { PageHeaderWrapper } from "@ant-design/pro-layout";
+import { connect } from "dva";
+import { findDOMNode } from "react-dom";
+import moment from "moment";
+import { StateType } from "./model";
+import { unDeploy } from "./service";
+import { BasicListItemDataType, ProcessUnitModel } from "./data.d";
+import styles from "./style.less";
+import request from "@/utils/request";
 
 const FormItem = Form.Item;
 const RadioButton = Radio.Button;
@@ -51,11 +51,14 @@ interface ProcessListState {
   current?: Partial<ProcessUnitModel>;
 }
 
-class ProcessList extends Component<
-  ProcessListProps,
-  ProcessListState
-> {
-  state: ProcessListState = { visible: false, done: false, current: undefined ,fileName:undefined,fileLocation:undefined};
+class ProcessList extends Component<ProcessListProps, ProcessListState> {
+  state: ProcessListState = {
+    visible: false,
+    done: false,
+    current: undefined,
+    fileName: undefined,
+    fileLocation: undefined,
+  };
 
   formLayout = {
     labelCol: { span: 7 },
@@ -68,16 +71,16 @@ class ProcessList extends Component<
     this.loadlist();
   }
 
-  loadlist = ()=>{
+  loadlist = () => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'processAndProcessList/fetch',
+      type: "processAndProcessList/fetch",
       payload: {
-        currentPage:this.props.processAndProcessList.currentPage,
-        pageSize:this.props.processAndProcessList.pageSize,
+        currentPage: this.props.processAndProcessList.currentPage,
+        pageSize: this.props.processAndProcessList.pageSize,
       },
     });
-  }
+  };
 
   showModal = () => {
     this.setState({
@@ -112,95 +115,96 @@ class ProcessList extends Component<
     e.preventDefault();
     const { dispatch, form } = this.props;
     const { current } = this.state;
-    const id = current ? current.id : '';
+    const id = current ? current.id : "";
 
     setTimeout(() => this.addBtn && this.addBtn.blur(), 0);
-    form.validateFields((err: string | undefined, fieldsValue: ProcessUnitModel) => {
-      fieldsValue.fileName = this.state.fileName;
-      fieldsValue.fileLocation = this.state.fileLocation;
-      console.info(fieldsValue);
-      if (err) return;
-      this.setState({
-        done: true,
-      });
-      dispatch({
-        type: 'processAndProcessList/updateUnit',
-        payload: { id, ...fieldsValue },
-      });
-    });
+    form.validateFields(
+      (err: string | undefined, fieldsValue: ProcessUnitModel) => {
+        fieldsValue.fileName = this.state.fileName;
+        fieldsValue.fileLocation = this.state.fileLocation;
+        console.info(fieldsValue);
+        if (err) return;
+        this.setState({
+          done: true,
+        });
+        dispatch({
+          type: "processAndProcessList/updateUnit",
+          payload: { id, ...fieldsValue },
+        });
+      }
+    );
   };
 
   deleteItem = (id: string) => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'processAndProcessList/submit',
+      type: "processAndProcessList/submit",
       payload: { id },
     });
   };
 
-
   /**
    * 部署功能
    */
-  deploy = (item:ProcessUnitModel) =>{
-    if(item.state === 'RUNNING'){
-      message.error('部署状态无法再次部署!!!');
+  deploy = (item: ProcessUnitModel) => {
+    if (item.state === "RUNNING") {
+      message.error("部署状态无法再次部署!!!");
       return;
-    }else{
-      request('/process/deploy', {
-        method:'POST',
-        data:item,
+    } else {
+      request("/process/deploy", {
+        method: "POST",
+        data: item,
       }).then((res) => {
-        if(res.success){
-          message.success(res.message,10);
-        }else{
-          message.error(res.message,10);
+        if (res.success) {
+          message.success(res.message, 10);
+        } else {
+          message.error(res.message, 10);
         }
       });
       this.loadlist();
     }
-  }
+  };
 
-  unDeploy = (item:ProcessUnitModel) =>{
-    if(!(item.state === 'RUNNING')){
-      message.error('处理单元未部署、无需卸载');
+  unDeploy = (item: ProcessUnitModel) => {
+    if (!(item.state === "RUNNING")) {
+      message.error("处理单元未部署、无需卸载");
       return;
-    }else{
-      request('/process/unDeploy', {
-        method:'POST',
-        data:item,
+    } else {
+      request("/process/unDeploy", {
+        method: "POST",
+        data: item,
       }).then((res) => {
-        if(res.success){
-          message.success(res.message,10);
-        }else{
-          message.error(`${res.message},${res.data}`,10);
+        if (res.success) {
+          message.success(res.message, 10);
+        } else {
+          message.error(`${res.message},${res.data}`, 10);
         }
       });
       this.loadlist();
     }
-  }
+  };
 
-    /**
+  /**
    * 文件上传操作
    */
-  handleOnChange = (info:any) =>{
-    const {status} = info.file;
-    if (status !== 'uploading') {
+  handleOnChange = (info: any) => {
+    const { status } = info.file;
+    if (status !== "uploading") {
       console.log(info.file, info.fileList);
     }
-    if (status === 'done') {
+    if (status === "done") {
       console.info(this.state);
       this.setState({
-        fileName:info.file.name,
-        fileLocation:info.file.response.data,
+        fileName: info.file.name,
+        fileLocation: info.file.response.data,
       });
-    } else if (status === 'error') {
+    } else if (status === "error") {
       message.error(`${info.file.name} file upload failed.`);
     }
-  }
+  };
 
-  normFile = (e:any) => {
-    console.log('Upload event:', e);
+  normFile = (e: any) => {
+    console.log("Upload event:", e);
     if (Array.isArray(e)) {
       return e;
     }
@@ -219,16 +223,16 @@ class ProcessList extends Component<
     const { visible, done, current = {} } = this.state;
 
     const editAndDelete = (key: string, currentItem: ProcessUnitModel) => {
-      if(key === 'undeploy'){
+      if (key === "undeploy") {
         this.unDeploy(currentItem);
       }
-      if (key === 'edit') this.showEditModal(currentItem);
-      else if (key === 'delete') {
+      if (key === "edit") this.showEditModal(currentItem);
+      else if (key === "delete") {
         Modal.confirm({
-          title: '删除任务',
-          content: '确定删除该任务吗？',
-          okText: '确认',
-          cancelText: '取消',
+          title: "删除任务",
+          content: "确定删除该任务吗？",
+          okText: "确认",
+          cancelText: "取消",
           onOk: () => this.deleteItem(currentItem.id),
         });
       }
@@ -236,7 +240,11 @@ class ProcessList extends Component<
 
     const modalFooter = done
       ? { footer: null, onCancel: this.handleDone }
-      : { okText: '保存', onOk: this.handleSubmit, onCancel: this.handleCancel };
+      : {
+          okText: "保存",
+          onOk: this.handleSubmit,
+          onCancel: this.handleCancel,
+        };
 
     const Info: React.FC<{
       title: React.ReactNode;
@@ -257,7 +265,11 @@ class ProcessList extends Component<
           <RadioButton value="progress">进行中</RadioButton>
           <RadioButton value="waiting">等待中</RadioButton>
         </RadioGroup>
-        <Search className={styles.extraContentSearch} placeholder="请输入" onSearch={() => ({})} />
+        <Search
+          className={styles.extraContentSearch}
+          placeholder="请输入"
+          onSearch={() => ({})}
+        />
       </div>
     );
 
@@ -269,7 +281,16 @@ class ProcessList extends Component<
     };
 
     const ListContent = ({
-      data: {state,createTime,startDriver,handleType,environment,fileName,modifyTime,processCode},
+      data: {
+        state,
+        createTime,
+        startDriver,
+        handleType,
+        environment,
+        fileName,
+        modifyTime,
+        processCode,
+      },
     }: {
       data: ProcessUnitModel;
     }) => (
@@ -292,13 +313,12 @@ class ProcessList extends Component<
         </div>
         <div className={styles.listContentItem}>
           <span>创建时间</span>
-          <p>{moment(createTime).format('YYYY-MM-DD HH:mm')}</p>
+          <p>{moment(createTime).format("YYYY-MM-DD HH:mm")}</p>
         </div>
         <div className={styles.listContentItem}>
           <span>修改时间</span>
-          <p>{moment(modifyTime).format('YYYY-MM-DD HH:mm')}</p>
+          <p>{moment(modifyTime).format("YYYY-MM-DD HH:mm")}</p>
         </div>
-        
       </div>
     );
 
@@ -339,50 +359,59 @@ class ProcessList extends Component<
       return (
         <Form onSubmit={this.handleSubmit}>
           <FormItem label="单元编码" {...this.formLayout}>
-            {getFieldDecorator('processCode', {
-              rules: [{ required: true, message: '请输入单元编码' }],
+            {getFieldDecorator("processCode", {
+              rules: [{ required: true, message: "请输入单元编码" }],
               initialValue: current.processCode,
-            })(<Input placeholder="请输入" disabled/>)}
+            })(<Input placeholder="请输入" disabled />)}
           </FormItem>
           <FormItem label="单元名称" {...this.formLayout}>
-            {getFieldDecorator('processName', {
-              rules: [{ required: true, message: '请输入单元名称' }],
+            {getFieldDecorator("processName", {
+              rules: [{ required: true, message: "请输入单元名称" }],
               initialValue: current.processName,
-            })(<Input placeholder="请输入" disabled/>)}
+            })(<Input placeholder="请输入" disabled />)}
           </FormItem>
 
           <FormItem label="运行环境" {...this.formLayout}>
-            {getFieldDecorator('environment', {
-              rules: [{ required: true, message: '请输入单元名称' }],
+            {getFieldDecorator("environment", {
+              rules: [{ required: true, message: "请输入单元名称" }],
               initialValue: current.environment,
-            })(<Select placeholder="请选择">
-              <Select.Option value="DEV">DEV</Select.Option>
-              <Select.Option value="TEST">TEST</Select.Option>
-              <Select.Option value="PRE_PRDO">PRE_PRDO</Select.Option>
-              <Select.Option value="PROD">PROD</Select.Option>
-              </Select>)}
+            })(
+              <Select placeholder="请选择">
+                <Select.Option value="DEV">DEV</Select.Option>
+                <Select.Option value="TEST">TEST</Select.Option>
+                <Select.Option value="PRE_PRDO">PRE_PRDO</Select.Option>
+                <Select.Option value="PROD">PROD</Select.Option>
+              </Select>
+            )}
           </FormItem>
 
-          <Form.Item {...this.formLayout}  label="上传单元">
-              <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={this.normFile} noStyle>
-                <Upload.Dragger 
-                  name="uploadFile" 
-                  headers={{Authorization: `YIANJU ${localStorage.getItem('token')}`}}
-                  action="/api/process/upload"
-                  multiple={false}
-                  onChange={this.handleOnChange}
-                >
-                  <p className="ant-upload-drag-icon">
-                    <InboxOutlined />
-                  </p>
-                  <p className="ant-upload-text">   点击或者拖拽文件到此处   </p>
-                  <p className="ant-upload-hint">支持单个或多个文件</p>
-                </Upload.Dragger>
-              </Form.Item>
+          <Form.Item {...this.formLayout} label="上传单元">
+            <Form.Item
+              name="dragger"
+              valuePropName="fileList"
+              getValueFromEvent={this.normFile}
+              noStyle
+            >
+              <Upload.Dragger
+                name="uploadFile"
+                headers={{
+                  Authorization: `YIANJU ${localStorage.getItem("token")}`,
+                }}
+                action="/api/process/upload"
+                multiple={false}
+                onChange={this.handleOnChange}
+              >
+                <p className="ant-upload-drag-icon">
+                  <InboxOutlined />
+                </p>
+                <p className="ant-upload-text"> 点击或者拖拽文件到此处 </p>
+                <p className="ant-upload-hint">支持单个或多个文件</p>
+              </Upload.Dragger>
             </Form.Item>
+          </Form.Item>
           <FormItem {...this.formLayout} label="单元描述">
-            {getFieldDecorator('description', {
-              rules: [{ message: '请输入至少五个字符的单元描述！', min: 5 }],
+            {getFieldDecorator("description", {
+              rules: [{ message: "请输入至少五个字符的单元描述！", min: 5 }],
               initialValue: current.description,
             })(<TextArea rows={4} placeholder="请输入至少单元描述" />)}
           </FormItem>
@@ -393,20 +422,19 @@ class ProcessList extends Component<
       <>
         <PageHeaderWrapper>
           <div className={styles.standardList}>
-              
             <Card
               className={styles.listCard}
               bordered={false}
               title="基本列表"
               style={{ marginTop: 24 }}
-              bodyStyle={{ padding: '0 32px 40px 32px' }}
+              bodyStyle={{ padding: "0 32px 40px 32px" }}
               extra={extraContent}
             >
               <Button
                 type="dashed"
-                style={{ width: '100%', marginBottom: 8 }}
+                style={{ width: "100%", marginBottom: 8 }}
                 onClick={this.showModal}
-                ref={component => {
+                ref={(component) => {
                   // eslint-disable-next-line  react/no-find-dom-node
                   this.addBtn = findDOMNode(component) as HTMLButtonElement;
                 }}
@@ -420,13 +448,12 @@ class ProcessList extends Component<
                 loading={loading}
                 pagination={paginationProps}
                 dataSource={list}
-                renderItem={item => (
-                  
+                renderItem={(item) => (
                   <List.Item
                     actions={[
                       <a
                         key="edit"
-                        onClick={e => {
+                        onClick={(e) => {
                           e.preventDefault();
                           //this.showEditModal(item);
                           this.deploy(item);
@@ -437,9 +464,14 @@ class ProcessList extends Component<
                       <MoreBtn key="more" item={item} />,
                     ]}
                   >
-                  
                     <List.Item.Meta
-                      avatar={<Avatar src={item.logo} shape="square" size="large" />}
+                      avatar={
+                        <Avatar
+                          src="https://mrduan.oss-cn-beijing.aliyuncs.com/java.png"
+                          shape="square"
+                          size="large"
+                        />
+                      }
                       title={<a href={item.processName}>{item.processName}</a>}
                       description={item.description}
                     />
@@ -452,10 +484,10 @@ class ProcessList extends Component<
         </PageHeaderWrapper>
 
         <Modal
-          title={done ? null : `任务${current ? '编辑' : '添加'}`}
+          title={done ? null : `任务${current ? "编辑" : "添加"}`}
           className={styles.standardListForm}
           width={640}
-          bodyStyle={done ? { padding: '72px 0' } : { padding: '28px 0 0' }}
+          bodyStyle={done ? { padding: "72px 0" } : { padding: "28px 0 0" }}
           destroyOnClose
           visible={visible}
           {...modalFooter}
@@ -479,5 +511,5 @@ export default connect(
   }) => ({
     processAndProcessList,
     loading: loading.models.processAndProcessList,
-  }),
+  })
 )(Form.create<ProcessListProps>()(ProcessList));

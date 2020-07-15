@@ -1,13 +1,13 @@
-import { PlusOutlined } from '@ant-design/icons';
-import { Button, Card, List, Typography } from 'antd';
-import React, { Component } from 'react';
+import { PlusOutlined } from "@ant-design/icons";
+import { Button, Card, List, Typography } from "antd";
+import React, { Component } from "react";
 
-import { Dispatch } from 'redux';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'dva';
-import { StateType } from './model';
-import { CardListItemDataType } from './data.d';
-import styles from './style.less';
+import { Dispatch } from "redux";
+import { PageHeaderWrapper } from "@ant-design/pro-layout";
+import { connect } from "dva";
+import { StateType } from "./model";
+import { CardListItemDataType } from "./data.d";
+import styles from "./style.less";
 
 const { Paragraph } = Typography;
 
@@ -22,14 +22,11 @@ interface ListCardListState {
   current?: Partial<CardListItemDataType>;
 }
 
-class ListCardList extends Component<
-  ListCardListProps,
-  ListCardListState
-> {
+class ListCardList extends Component<ListCardListProps, ListCardListState> {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'listCardList/fetch',
+      type: "listCardList/fetch",
       payload: {
         count: 8,
       },
@@ -45,20 +42,30 @@ class ListCardList extends Component<
     const content = (
       <div className={styles.pageHeaderContent}>
         <p>
-          段落示意：蚂蚁金服务设计平台 ant.design，用最小的工作量，无缝接入蚂蚁金服生态，
+          段落示意：蚂蚁金服务设计平台
+          ant.design，用最小的工作量，无缝接入蚂蚁金服生态，
           提供跨越设计与开发的体验解决方案。
         </p>
         <div className={styles.contentLink}>
           <a>
-            <img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/MjEImQtenlyueSmVEfUD.svg" />{' '}
+            <img
+              alt=""
+              src="https://gw.alipayobjects.com/zos/rmsportal/MjEImQtenlyueSmVEfUD.svg"
+            />{" "}
             快速开始
           </a>
           <a>
-            <img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/NbuDUAuBlIApFuDvWiND.svg" />{' '}
+            <img
+              alt=""
+              src="https://gw.alipayobjects.com/zos/rmsportal/NbuDUAuBlIApFuDvWiND.svg"
+            />{" "}
             产品简介
           </a>
           <a>
-            <img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg" />{' '}
+            <img
+              alt=""
+              src="https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg"
+            />{" "}
             产品文档
           </a>
         </div>
@@ -82,20 +89,32 @@ class ListCardList extends Component<
             loading={loading}
             grid={{ gutter: 24, lg: 3, md: 2, sm: 1, xs: 1 }}
             dataSource={[nullData, ...list]}
-            renderItem={item => {
+            renderItem={(item) => {
               if (item && item.id) {
                 return (
                   <List.Item key={item.id}>
                     <Card
                       hoverable
                       className={styles.card}
-                      actions={[<a key="option1">操作一</a>, <a key="option2">操作二</a>]}
+                      actions={[
+                        <a key="option1">操作一</a>,
+                        <a key="option2">操作二</a>,
+                      ]}
                     >
                       <Card.Meta
-                        avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}
+                        avatar={
+                          <img
+                            alt=""
+                            className={styles.cardAvatar}
+                            src={item.avatar}
+                          />
+                        }
                         title={<a>{item.title}</a>}
                         description={
-                          <Paragraph className={styles.item} ellipsis={{ rows: 3 }}>
+                          <Paragraph
+                            className={styles.item}
+                            ellipsis={{ rows: 3 }}
+                          >
                             {item.description}
                           </Paragraph>
                         }
@@ -131,5 +150,5 @@ export default connect(
   }) => ({
     listCardList,
     loading: loading.models.listCardList,
-  }),
+  })
 )(ListCardList);

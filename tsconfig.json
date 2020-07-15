@@ -32,5 +32,9 @@
     "src/setupTests.ts",
     "tslint:latest",
     "tslint-config-prettier"
-  ]
+  ],
+  "paths": {
+    "@/*": ["./src/*"],
+    "@@/*": ["./src/.umi/*"]
+  }
 }

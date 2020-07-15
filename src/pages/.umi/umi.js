@@ -227,7 +227,7 @@ export default (__IS_BROWSER ? null : serverRender);
     // Umi UI Bubble
     require('../../../node_modules/_umi-plugin-ui@1.5.3@umi-plugin-ui/lib/bubble').default(
       {
-        port: 3000,
+        port: 3001,
         path: 'D:/vscode/ims-web',
         currentProject: '',
         isBigfish: undefined,
