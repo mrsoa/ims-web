@@ -409,6 +409,42 @@ const routes = [
             exact: true,
           },
           {
+            name: '列表',
+            icon: 'docment',
+            path: '/doclist',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  component: () =>
+                    import(/* webpackChunkName: "p__doclist" */ '../doclist'),
+                  LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                    .default,
+                })
+              : require('../doclist').default,
+            exact: true,
+          },
+          {
+            name: '明细',
+            icon: 'docment',
+            path: '/doc/detail',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  app: require('@tmp/dva').getApp(),
+                  models: () => [
+                    import(/* webpackChunkName: 'p__doc__model.ts' */ 'D:/vscode/ims-web/src/pages/doc/model.ts').then(
+                      m => {
+                        return { namespace: 'model', ...m.default };
+                      },
+                    ),
+                  ],
+                  component: () =>
+                    import(/* webpackChunkName: "p__doc__detail" */ '../doc/detail'),
+                  LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                    .default,
+                })
+              : require('../doc/detail').default,
+            exact: true,
+          },
+          {
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () =>

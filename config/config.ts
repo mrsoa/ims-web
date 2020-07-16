@@ -213,6 +213,19 @@ export default {
               component: "./doc",
             },
             {
+              name: "列表",
+              icon: "docment",
+              path: "/doclist",
+              component: "./doclist",
+            },
+            {
+              name: "明细",
+              icon: "docment",
+              path: "/doc/detail",
+              component: "./doc/detail",
+            },
+
+            {
               component: "./404",
             },
           ],
