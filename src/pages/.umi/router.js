@@ -72,7 +72,7 @@ const routes = [
         authority: ['admin', 'user'],
         routes: [
           {
-            name: 'welcome',
+            name: '欢迎',
             icon: 'smile',
             path: '/',
             component: __IS_BROWSER
@@ -109,7 +109,7 @@ const routes = [
             exact: true,
           },
           {
-            name: 'api',
+            name: '接口管理',
             icon: 'api',
             path: '/list',
             component: __IS_BROWSER
@@ -160,7 +160,7 @@ const routes = [
             ],
           },
           {
-            name: 'datasource',
+            name: '数据源管理',
             icon: 'database',
             path: '/datasource',
             component: __IS_BROWSER
@@ -182,12 +182,12 @@ const routes = [
             exact: true,
           },
           {
-            name: 'system',
+            name: '系统管理',
             icon: 'setting',
             path: '/system',
             routes: [
               {
-                name: 'company',
+                name: '公司管理',
                 icon: 'bank',
                 path: '/system/list',
                 component: __IS_BROWSER
@@ -241,12 +241,12 @@ const routes = [
             ],
           },
           {
-            name: 'process',
+            name: '功能单元',
             icon: 'appstore',
             path: '/process',
             routes: [
               {
-                name: 'list',
+                name: '单元列表',
                 icon: 'unordered-list',
                 path: '/process/list',
                 component: __IS_BROWSER
@@ -268,7 +268,7 @@ const routes = [
                 exact: true,
               },
               {
-                name: 'add',
+                name: '新增单元',
                 icon: 'plus-square',
                 path: '/process/add',
                 component: __IS_BROWSER
@@ -290,7 +290,7 @@ const routes = [
                 exact: true,
               },
               {
-                name: 'list',
+                name: '功能列表',
                 icon: 'function',
                 path: '/process/functionlist',
                 component: __IS_BROWSER
@@ -322,12 +322,12 @@ const routes = [
             ],
           },
           {
-            name: 'job',
+            name: '调度管理',
             icon: 'clock-circle',
             path: '/job',
             routes: [
               {
-                name: 'add',
+                name: '新增',
                 icon: 'file-add',
                 path: '/job/jobdefineadd',
                 component: __IS_BROWSER
@@ -349,7 +349,7 @@ const routes = [
                 exact: true,
               },
               {
-                name: 'list',
+                name: '任务列表',
                 icon: 'calendar',
                 path: '/job/list',
                 component: __IS_BROWSER
@@ -363,7 +363,7 @@ const routes = [
                 exact: true,
               },
               {
-                name: 'timer',
+                name: '调度列表',
                 icon: 'schedule',
                 path: '/job/timerlist',
                 component: __IS_BROWSER
@@ -385,64 +385,6 @@ const routes = [
                   ),
               },
             ],
-          },
-          {
-            name: '文档管理',
-            icon: 'docment',
-            path: '/doc',
-            component: __IS_BROWSER
-              ? _dvaDynamic({
-                  app: require('@tmp/dva').getApp(),
-                  models: () => [
-                    import(/* webpackChunkName: 'p__doc__model.ts' */ 'D:/vscode/ims-web/src/pages/doc/model.ts').then(
-                      m => {
-                        return { namespace: 'model', ...m.default };
-                      },
-                    ),
-                  ],
-                  component: () =>
-                    import(/* webpackChunkName: "p__doc" */ '../doc'),
-                  LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
-                    .default,
-                })
-              : require('../doc').default,
-            exact: true,
-          },
-          {
-            name: '列表',
-            icon: 'docment',
-            path: '/doclist',
-            component: __IS_BROWSER
-              ? _dvaDynamic({
-                  component: () =>
-                    import(/* webpackChunkName: "p__doclist" */ '../doclist'),
-                  LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
-                    .default,
-                })
-              : require('../doclist').default,
-            exact: true,
-          },
-          {
-            name: '明细',
-            icon: 'docment',
-            path: '/doc/detail',
-            component: __IS_BROWSER
-              ? _dvaDynamic({
-                  app: require('@tmp/dva').getApp(),
-                  models: () => [
-                    import(/* webpackChunkName: 'p__doc__model.ts' */ 'D:/vscode/ims-web/src/pages/doc/model.ts').then(
-                      m => {
-                        return { namespace: 'model', ...m.default };
-                      },
-                    ),
-                  ],
-                  component: () =>
-                    import(/* webpackChunkName: "p__doc__detail" */ '../doc/detail'),
-                  LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
-                    .default,
-                })
-              : require('../doc/detail').default,
-            exact: true,
           },
           {
             component: __IS_BROWSER

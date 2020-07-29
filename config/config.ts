@@ -70,10 +70,6 @@ if (isAntDesignProPreview) {
 
 export default {
   plugins,
-  hash: true,
-  publicPath: "./",
-  base: "/",
-  history: "hash",
   targets: {
     ie: 11,
   },
@@ -100,7 +96,7 @@ export default {
           authority: ["admin", "user"],
           routes: [
             {
-              name: "welcome",
+              name: "欢迎",
               icon: "smile",
               path: "/",
               component: "./Welcomes",
@@ -113,7 +109,7 @@ export default {
               authority: ["admin"],
             },
             {
-              name: "api",
+              name: "接口管理",
               icon: "api",
               path: "/list",
               component: "./ListTableList",
@@ -132,18 +128,18 @@ export default {
               ],
             },
             {
-              name: "datasource",
+              name: "数据源管理",
               icon: "database",
               path: "/datasource",
               component: "./datasource",
             },
             {
-              name: "system",
+              name: "系统管理",
               icon: "setting",
               path: "/system",
               routes: [
                 {
-                  name: "company",
+                  name: "公司管理",
                   icon: "bank",
                   path: "/system/list",
                   component: "./system/company/list",
@@ -157,24 +153,24 @@ export default {
               ],
             },
             {
-              name: "process",
+              name: "功能单元",
               icon: "appstore",
               path: "/process",
               routes: [
                 {
-                  name: "list",
+                  name: "单元列表",
                   icon: "unordered-list",
                   path: "/process/list",
                   component: "./process/ProcessList",
                 },
                 {
-                  name: "add",
+                  name: "新增单元",
                   icon: "plus-square",
                   path: "/process/add",
                   component: "./process/add",
                 },
                 {
-                  name: "list",
+                  name: "功能列表",
                   icon: "function",
                   path: "/process/functionlist",
                   component: "./process/FunctionList",
@@ -182,49 +178,30 @@ export default {
               ],
             },
             {
-              name: "job",
+              name: "调度管理",
               icon: "clock-circle",
               path: "/job",
               routes: [
                 {
-                  name: "add",
+                  name: "新增",
                   icon: "file-add",
                   path: "/job/jobdefineadd",
                   component: "./job/JobDefineAdd",
                 },
                 {
-                  name: "list",
+                  name: "任务列表",
                   icon: "calendar",
                   path: "/job/list",
                   component: "./job/JobDefineList",
                 },
                 {
-                  name: "timer",
+                  name: "调度列表",
                   icon: "schedule",
                   path: "/job/timerlist",
                   component: "./job/TimerList",
                 },
               ],
             },
-            {
-              name: "文档管理",
-              icon: "docment",
-              path: "/doc",
-              component: "./doc",
-            },
-            {
-              name: "列表",
-              icon: "docment",
-              path: "/doclist",
-              component: "./doclist",
-            },
-            {
-              name: "明细",
-              icon: "docment",
-              path: "/doc/detail",
-              component: "./doc/detail",
-            },
-
             {
               component: "./404",
             },
