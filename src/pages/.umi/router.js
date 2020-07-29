@@ -123,43 +123,6 @@ const routes = [
             exact: true,
           },
           {
-            name: 'apis',
-            icon: 'api',
-            path: '/apis',
-            routes: [
-              {
-                name: '标准列表',
-                icon: 'smile',
-                path: '/apis/apislist',
-                component: __IS_BROWSER
-                  ? _dvaDynamic({
-                      app: require('@tmp/dva').getApp(),
-                      models: () => [
-                        import(/* webpackChunkName: 'p__apis__ApisList__model.ts' */ 'D:/vscode/ims-web/src/pages/apis/ApisList/model.ts').then(
-                          m => {
-                            return { namespace: 'model', ...m.default };
-                          },
-                        ),
-                      ],
-                      component: () =>
-                        import(/* webpackChunkName: "layouts__BasicLayout" */ '../apis/ApisList'),
-                      LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
-                        .default,
-                    })
-                  : require('../apis/ApisList').default,
-                exact: true,
-              },
-              {
-                component: () =>
-                  React.createElement(
-                    require('D:/vscode/ims-web/node_modules/_umi-build-dev@1.18.5@umi-build-dev/lib/plugins/404/NotFound.js')
-                      .default,
-                    { pagesPath: 'src/pages', hasRoutesInConfig: true },
-                  ),
-              },
-            ],
-          },
-          {
             name: '数据源管理',
             icon: 'database',
             path: '/datasource',

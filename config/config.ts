@@ -115,19 +115,6 @@ export default {
               component: "./ListTableList",
             },
             {
-              name: "apis",
-              icon: "api",
-              path: "/apis",
-              routes: [
-                {
-                  name: "标准列表",
-                  icon: "smile",
-                  path: "/apis/apislist",
-                  component: "./apis/ApisList",
-                },
-              ],
-            },
-            {
               name: "数据源管理",
               icon: "database",
               path: "/datasource",
