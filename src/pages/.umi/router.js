@@ -275,6 +275,20 @@ const routes = [
                 exact: true,
               },
               {
+                name: '执行记录',
+                icon: 'smile',
+                path: '/process/prolog',
+                component: __IS_BROWSER
+                  ? _dvaDynamic({
+                      component: () =>
+                        import(/* webpackChunkName: "layouts__BasicLayout" */ '../process/ProLogList'),
+                      LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                        .default,
+                    })
+                  : require('../process/ProLogList').default,
+                exact: true,
+              },
+              {
                 component: () =>
                   React.createElement(
                     require('D:/vscode/ims-web/node_modules/_umi-build-dev@1.18.5@umi-build-dev/lib/plugins/404/NotFound.js')

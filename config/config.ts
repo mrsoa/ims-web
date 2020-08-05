@@ -162,6 +162,12 @@ export default {
                   path: "/process/functionlist",
                   component: "./process/FunctionList",
                 },
+                {
+                  name: "执行记录",
+                  icon: "smile",
+                  path: "/process/prolog",
+                  component: "./process/ProLogList",
+                },
               ],
             },
             {
