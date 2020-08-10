@@ -1,14 +1,18 @@
-import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
-import { Alert, Checkbox } from 'antd';
-import React, { useState } from 'react';
-import { Dispatch, AnyAction } from 'redux';
-import { Link } from 'umi';
-import { connect } from 'dva';
-import { StateType } from '@/models/login';
-import styles from './style.less';
-import { LoginParamsType } from '@/services/login';
-import { ConnectState } from '@/models/connect';
-import LoginFrom from './components/Login';
+import {
+  AlipayCircleOutlined,
+  TaobaoCircleOutlined,
+  WeiboCircleOutlined,
+} from "@ant-design/icons";
+import { Alert, Checkbox } from "antd";
+import React, { useState } from "react";
+import { Dispatch, AnyAction } from "redux";
+import { Link } from "umi";
+import { connect } from "dva";
+import { StateType } from "@/models/login";
+import styles from "./style.less";
+import { LoginParamsType } from "@/services/login";
+import { ConnectState } from "@/models/connect";
+import LoginFrom from "./components/Login";
 
 const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginFrom;
 interface LoginProps {
@@ -30,16 +34,16 @@ const LoginMessage: React.FC<{
   />
 );
 
-const Login: React.FC<LoginProps> = props => {
+const Login: React.FC<LoginProps> = (props) => {
   const { userLogin = {}, submitting } = props;
   const { success, type: loginType } = userLogin;
   const [autoLogin, setAutoLogin] = useState(true);
-  const [type, setType] = useState<string>('account');
+  const [type, setType] = useState<string>("account");
 
   const handleSubmit = (values: LoginParamsType) => {
     const { dispatch } = props;
     dispatch({
-      type: 'login/login',
+      type: "login/login",
       payload: { ...values, type },
     });
   };
@@ -47,7 +51,7 @@ const Login: React.FC<LoginProps> = props => {
     <div className={styles.main}>
       <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
         <Tab key="account" tab="账户密码登录">
-          {success === false  && loginType === 'account' && !submitting && (
+          {success === false && loginType === "account" && !submitting && (
             <LoginMessage content="账户或密码错误" />
           )}
 
@@ -57,7 +61,7 @@ const Login: React.FC<LoginProps> = props => {
             rules={[
               {
                 required: true,
-                message: '请输入用户名!',
+                message: "请输入用户名!",
               },
             ]}
           />
@@ -67,12 +71,12 @@ const Login: React.FC<LoginProps> = props => {
             rules={[
               {
                 required: true,
-                message: '请输入密码！',
+                message: "请输入密码！",
               },
             ]}
           />
         </Tab>
-        <Tab key="mobile" tab="手机号登录">
+        {/* <Tab key="mobile" tab="手机号登录">
           {success === false && loginType === 'mobile' && !submitting && (
             <LoginMessage content="验证码错误" />
           )}
@@ -103,21 +107,24 @@ const Login: React.FC<LoginProps> = props => {
               },
             ]}
           />
-        </Tab>
+        </Tab> */}
         <div>
-          <Checkbox checked={autoLogin} onChange={e => setAutoLogin(e.target.checked)}>
+          <Checkbox
+            checked={autoLogin}
+            onChange={(e) => setAutoLogin(e.target.checked)}
+          >
             自动登录
           </Checkbox>
           <a
             style={{
-              float: 'right',
+              float: "right",
             }}
           >
             忘记密码
           </a>
         </div>
         <Submit loading={submitting}>登录</Submit>
-        <div className={styles.other}>
+        {/* <div className={styles.other}>
           其他登录方式
           <AlipayCircleOutlined className={styles.icon} />
           <TaobaoCircleOutlined className={styles.icon} />
@@ -125,7 +132,7 @@ const Login: React.FC<LoginProps> = props => {
           <Link className={styles.register} to="/user/register">
             注册账户
           </Link>
-        </div>
+        </div> */}
       </LoginFrom>
     </div>
   );
@@ -133,5 +140,5 @@ const Login: React.FC<LoginProps> = props => {
 
 export default connect(({ login, loading }: ConnectState) => ({
   userLogin: login,
-  submitting: loading.effects['login/login'],
+  submitting: loading.effects["login/login"],
 }))(Login);

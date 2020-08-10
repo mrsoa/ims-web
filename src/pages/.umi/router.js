@@ -276,7 +276,7 @@ const routes = [
               },
               {
                 name: '执行记录',
-                icon: 'smile',
+                icon: 'reload',
                 path: '/process/prolog',
                 component: __IS_BROWSER
                   ? _dvaDynamic({

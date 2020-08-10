@@ -8,6 +8,20 @@ export async function queryRule(params?: TableListParams) {
   });
 }
 
+export async function getById(id: number) {
+  return request("/process/getLogById", {
+    method: "POST",
+    params: { id },
+  });
+}
+
+export async function resetProcess(id: number) {
+  return request("/process/resetProcess", {
+    method: "POST",
+    params: { id },
+  });
+}
+
 export async function removeRule(params: { key: number[] }) {
   return request("/api/rule", {
     method: "POST",

@@ -1,14 +1,13 @@
-import { DownOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Divider, Dropdown, Menu, message, Input, Modal } from "antd";
+import { Divider, message, Input } from "antd";
 import React, { useState, useRef } from "react";
 import { PageHeaderWrapper } from "@ant-design/pro-layout";
 import ProTable, { ProColumns, ActionType } from "@ant-design/pro-table";
 
 import CreateForm from "./components/CreateForm";
-import UpdateForm, { FormValueType } from "./components/UpdateForm";
 import { TableListItem } from "./data.d";
-import { queryRule, updateRule, addRule, removeRule } from "./service";
+import { queryRule, addRule, getById, resetProcess } from "./service";
 import ProDetail from "./components/ProDetail";
+import HandleResult from "./components/HandleResult";
 
 /**
  * 添加节点
@@ -29,75 +28,76 @@ const handleAdd = async (fields: TableListItem) => {
 };
 
 /**
- * 更新节点
- * @param fields
+ *
+ * @param id 获取日志明细信息
  */
-const handleUpdate = async (fields: FormValueType) => {
-  const hide = message.loading("正在配置");
-  try {
-    await updateRule({
-      name: fields.name,
-      desc: fields.desc,
-      key: fields.key,
-    });
-    hide();
-
-    message.success("配置成功");
-    return true;
-  } catch (error) {
-    hide();
-    message.error("配置失败请重试！");
-    return false;
-  }
+const getLogById = async (id: number) => {
+  return await getById(id);
 };
 
-/**
- *  删除节点
- * @param selectedRows
- */
-const handleRemove = async (selectedRows: TableListItem[]) => {
-  const hide = message.loading("正在删除");
-  if (!selectedRows) return true;
-  try {
-    await removeRule({
-      key: selectedRows.map((row) => row.key),
-    });
-    hide();
-    message.success("删除成功，即将刷新");
-    return true;
-  } catch (error) {
-    hide();
-    message.error("删除失败，请重试");
-    return false;
-  }
+const reset = async (id: number) => {
+  return await resetProcess(id);
 };
 
 const TableList: React.FC<{}> = () => {
   const [createModalVisible, handleModalVisible] = useState<boolean>(false);
-  const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(
-    false
-  );
 
   const [proLogDetailModalVisible, handleProLogDetailModalVisible] = useState<
     boolean
   >(false);
 
-  const [stepFormValues, setStepFormValues] = useState({});
+  const [resultModalVisible, handleResultModalVisible] = useState<boolean>(
+    false
+  );
+
+  const [proDetail, setProDetail] = useState({});
+
+  const [useHandleResult, setUseHandleResult] = useState({});
+
   const actionRef = useRef<ActionType>();
   const columns: ProColumns<TableListItem>[] = [
     {
       title: "主键",
       dataIndex: "businessKey",
+      hideInSearch: true,
+    },
+    {
+      title: "主键",
+      dataIndex: "key",
+      hideInForm: true,
+      hideInSearch: false,
+      hideInTable: true,
     },
     {
       title: "单元编码",
-      dataIndex: "processCode",
-      valueType: "textarea",
+      dataIndex: "functionCode",
+    },
+    {
+      title: "开始时间",
+      valueType: "dateTime",
+      dataIndex: "createTimeFrom",
+      hideInForm: true,
+      hideInSearch: false,
+      hideInTable: true,
+    },
+    {
+      title: "结束时间",
+      valueType: "dateTime",
+      dataIndex: "createTimeTo",
+      hideInForm: true,
+      hideInSearch: false,
+      hideInTable: true,
     },
     {
       title: "尝试次数",
       dataIndex: "tryed",
+      hideInSearch: true,
     },
+    {
+      title: "结果码",
+      dataIndex: "returnCode",
+    },
+
     {
       title: "状态",
       dataIndex: "status",
@@ -113,16 +113,7 @@ const TableList: React.FC<{}> = () => {
       sorter: true,
       valueType: "dateTime",
       hideInForm: true,
-      renderFormItem: (item, { defaultRender, ...rest }, form) => {
-        const status = form.getFieldValue("status");
-        if (`${status}` === "0") {
-          return false;
-        }
-        if (`${status}` === "3") {
-          return <Input {...rest} placeholder="请输入异常原因！" />;
-        }
-        return defaultRender(item);
-      },
+      hideInSearch: true,
     },
     {
       title: "操作",
@@ -130,24 +121,25 @@ const TableList: React.FC<{}> = () => {
       valueType: "option",
       render: (_, record) => (
         <>
-          <a
-            onClick={() => {
-              handleUpdateModalVisible(true);
-              setStepFormValues(record);
-            }}
-          >
-            配置
-          </a>
-          <Divider type="vertical" />
-          <a href="">订阅警报</a>
           <Divider type="vertical" />
           <a
-            onClick={() => {
-              //alert(record);
+            onClick={async () => {
+              const res = await getLogById(record.id);
+              setProDetail(res);
               handleProLogDetailModalVisible(true);
             }}
           >
             查看详情
+          </a>
+          <Divider type="vertical" />
+          <a
+            onClick={async () => {
+              const res = await reset(record.id);
+              setUseHandleResult(res);
+              handleResultModalVisible(true);
+            }}
+          >
+            重试
           </a>
         </>
       ),
@@ -160,33 +152,33 @@ const TableList: React.FC<{}> = () => {
         headerTitle="查询表格"
         actionRef={actionRef}
         rowKey="key"
-        toolBarRender={(action, { selectedRows }) => [
-          <Button type="primary" onClick={() => handleModalVisible(true)}>
-            <PlusOutlined /> 新建
-          </Button>,
-          selectedRows && selectedRows.length > 0 && (
-            <Dropdown
-              overlay={
-                <Menu
-                  onClick={async (e) => {
-                    if (e.key === "remove") {
-                      await handleRemove(selectedRows);
-                      action.reload();
-                    }
-                  }}
-                  selectedKeys={[]}
-                >
-                  <Menu.Item key="remove">批量删除</Menu.Item>
-                  <Menu.Item key="approval">批量审批</Menu.Item>
-                </Menu>
-              }
-            >
-              <Button>
-                批量操作 <DownOutlined />
-              </Button>
-            </Dropdown>
-          ),
-        ]}
+        // toolBarRender={(action, { selectedRows }) => [
+        //   <Button type="primary" onClick={() => handleModalVisible(true)}>
+        //     <PlusOutlined /> 新建
+        //   </Button>,
+        //   selectedRows && selectedRows.length > 0 && (
+        //     <Dropdown
+        //       overlay={
+        //         <Menu
+        //           onClick={async (e) => {
+        //             if (e.key === "remove") {
+        //               await handleRemove(selectedRows);
+        //               action.reload();
+        //             }
+        //           }}
+        //           selectedKeys={[]}
+        //         >
+        //           <Menu.Item key="remove">批量删除</Menu.Item>
+        //           <Menu.Item key="approval">批量审批</Menu.Item>
+        //         </Menu>
+        //       }
+        //     >
+        //       <Button>
+        //         批量操作 <DownOutlined />
+        //       </Button>
+        //     </Dropdown>
+        //   ),
+        // ]}
         tableAlertRender={({ selectedRowKeys, selectedRows }) => (
           <div>
             已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a>{" "}
@@ -227,29 +219,14 @@ const TableList: React.FC<{}> = () => {
       <ProDetail
         onCancel={() => handleProLogDetailModalVisible(false)}
         modalVisible={proLogDetailModalVisible}
-      >
-        sdsdsdsd
-      </ProDetail>
-      {stepFormValues && Object.keys(stepFormValues).length ? (
-        <UpdateForm
-          onSubmit={async (value) => {
-            const success = await handleUpdate(value);
-            if (success) {
-              handleUpdateModalVisible(false);
-              setStepFormValues({});
-              if (actionRef.current) {
-                actionRef.current.reload();
-              }
-            }
-          }}
-          onCancel={() => {
-            handleUpdateModalVisible(false);
-            setStepFormValues({});
-          }}
-          updateModalVisible={updateModalVisible}
-          values={stepFormValues}
-        />
-      ) : null}
+        proLog={proDetail}
+      ></ProDetail>
+
+      <HandleResult
+        onCancel={() => handleResultModalVisible(false)}
+        modalVisible={resultModalVisible}
+        result={useHandleResult}
+      ></HandleResult>
     </PageHeaderWrapper>
   );
 };

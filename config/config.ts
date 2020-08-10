@@ -164,7 +164,7 @@ export default {
                 },
                 {
                   name: "执行记录",
-                  icon: "smile",
+                  icon: "reload",
                   path: "/process/prolog",
                   component: "./process/ProLogList",
                 },
