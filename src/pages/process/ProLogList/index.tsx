@@ -103,8 +103,8 @@ const TableList: React.FC<{}> = () => {
       dataIndex: "status",
       hideInForm: true,
       valueEnum: {
-        true: { text: "成功", status: "Success" },
-        false: { text: "失败", status: "Error" },
+        1: { text: "成功", status: "Success" },
+        0: { text: "失败", status: "Error" },
       },
     },
     {

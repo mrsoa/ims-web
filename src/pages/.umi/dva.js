@@ -20,10 +20,10 @@ export function _onCreate() {
     app.use(plugin);
   });
   
-  app.model({ namespace: 'global', ...(require('D:/vscode/ims-web/src/models/global.ts').default) });
-app.model({ namespace: 'login', ...(require('D:/vscode/ims-web/src/models/login.ts').default) });
-app.model({ namespace: 'setting', ...(require('D:/vscode/ims-web/src/models/setting.ts').default) });
-app.model({ namespace: 'user', ...(require('D:/vscode/ims-web/src/models/user.ts').default) });
+  app.model({ namespace: 'global', ...(require('C:/DEV/Vscode/ims-web/src/models/global.ts').default) });
+app.model({ namespace: 'login', ...(require('C:/DEV/Vscode/ims-web/src/models/login.ts').default) });
+app.model({ namespace: 'setting', ...(require('C:/DEV/Vscode/ims-web/src/models/setting.ts').default) });
+app.model({ namespace: 'user', ...(require('C:/DEV/Vscode/ims-web/src/models/user.ts').default) });
   return app;
 }
 

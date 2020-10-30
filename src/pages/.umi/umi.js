@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import findRoute, {
   getUrlQuery,
-} from 'D:/vscode/ims-web/node_modules/_umi-build-dev@1.18.5@umi-build-dev/lib/findRoute.js';
+} from 'C:/DEV/Vscode/ims-web/node_modules/_umi-build-dev@1.18.6@umi-build-dev/lib/findRoute.js';
 
 // runtime plugins
 const plugins = require('umi/_runtimePlugin');
@@ -228,7 +228,7 @@ export default (__IS_BROWSER ? null : serverRender);
     require('../../../node_modules/_umi-plugin-ui@1.5.3@umi-plugin-ui/lib/bubble').default(
       {
         port: 3000,
-        path: 'D:/vscode/ims-web',
+        path: 'C:/DEV/Vscode/ims-web',
         currentProject: '',
         isBigfish: undefined,
       },
@@ -240,7 +240,7 @@ export default (__IS_BROWSER ? null : serverRender);
 
 (() => {
   // Runtime block add component
-  window.GUmiUIFlag = require('../../../node_modules/_umi-build-dev@1.18.5@umi-build-dev/lib/plugins/commands/block/sdk/flagBabelPlugin/GUmiUIFlag.js').default;
+  window.GUmiUIFlag = require('../../../node_modules/_umi-build-dev@1.18.6@umi-build-dev/lib/plugins/commands/block/sdk/flagBabelPlugin/GUmiUIFlag.js').default;
 
   // Enable/Disable block add edit mode
   window.addEventListener(

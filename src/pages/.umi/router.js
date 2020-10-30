@@ -8,7 +8,7 @@ import {
 import dynamic from 'umi/dynamic';
 import renderRoutes from 'umi/lib/renderRoutes';
 import history from '@@/history';
-import RendererWrapper0 from 'D:/vscode/ims-web/src/pages/.umi/LocaleWrapper.jsx';
+import RendererWrapper0 from 'C:/DEV/Vscode/ims-web/src/pages/.umi/LocaleWrapper.jsx';
 import { routerRedux, dynamic as _dvaDynamic } from 'dva';
 
 const Router = routerRedux.ConnectedRouter;
@@ -20,7 +20,7 @@ const routes = [
       ? _dvaDynamic({
           component: () =>
             import(/* webpackChunkName: "layouts__UserLayout" */ '../../layouts/UserLayout'),
-          LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+          LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
             .default,
         })
       : require('../../layouts/UserLayout').default,
@@ -32,7 +32,7 @@ const routes = [
           ? _dvaDynamic({
               component: () =>
                 import(/* webpackChunkName: "p__user__login" */ '../user/login'),
-              LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+              LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                 .default,
             })
           : require('../user/login').default,
@@ -41,7 +41,7 @@ const routes = [
       {
         component: () =>
           React.createElement(
-            require('D:/vscode/ims-web/node_modules/_umi-build-dev@1.18.5@umi-build-dev/lib/plugins/404/NotFound.js')
+            require('C:/DEV/Vscode/ims-web/node_modules/_umi-build-dev@1.18.6@umi-build-dev/lib/plugins/404/NotFound.js')
               .default,
             { pagesPath: 'src/pages', hasRoutesInConfig: true },
           ),
@@ -54,7 +54,7 @@ const routes = [
       ? _dvaDynamic({
           component: () =>
             import(/* webpackChunkName: "layouts__SecurityLayout" */ '../../layouts/SecurityLayout'),
-          LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+          LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
             .default,
         })
       : require('../../layouts/SecurityLayout').default,
@@ -65,7 +65,7 @@ const routes = [
           ? _dvaDynamic({
               component: () =>
                 import(/* webpackChunkName: "layouts__BasicLayout" */ '../../layouts/BasicLayout'),
-              LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+              LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                 .default,
             })
           : require('../../layouts/BasicLayout').default,
@@ -79,7 +79,7 @@ const routes = [
               ? _dvaDynamic({
                   app: require('@tmp/dva').getApp(),
                   models: () => [
-                    import(/* webpackChunkName: 'p__Welcomes__model.ts' */ 'D:/vscode/ims-web/src/pages/Welcomes/model.ts').then(
+                    import(/* webpackChunkName: 'p__Welcomes__model.ts' */ 'C:/DEV/Vscode/ims-web/src/pages/Welcomes/model.ts').then(
                       m => {
                         return { namespace: 'model', ...m.default };
                       },
@@ -87,7 +87,7 @@ const routes = [
                   ],
                   component: () =>
                     import(/* webpackChunkName: "p__Welcomes" */ '../Welcomes'),
-                  LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                  LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Welcomes').default,
@@ -101,7 +101,7 @@ const routes = [
               ? _dvaDynamic({
                   component: () =>
                     import(/* webpackChunkName: "p__Admin" */ '../Admin'),
-                  LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                  LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Admin').default,
@@ -116,7 +116,7 @@ const routes = [
               ? _dvaDynamic({
                   component: () =>
                     import(/* webpackChunkName: "p__ListTableList" */ '../ListTableList'),
-                  LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                  LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                     .default,
                 })
               : require('../ListTableList').default,
@@ -130,7 +130,7 @@ const routes = [
               ? _dvaDynamic({
                   app: require('@tmp/dva').getApp(),
                   models: () => [
-                    import(/* webpackChunkName: 'p__datasource__model.ts' */ 'D:/vscode/ims-web/src/pages/datasource/model.ts').then(
+                    import(/* webpackChunkName: 'p__datasource__model.ts' */ 'C:/DEV/Vscode/ims-web/src/pages/datasource/model.ts').then(
                       m => {
                         return { namespace: 'model', ...m.default };
                       },
@@ -138,7 +138,7 @@ const routes = [
                   ],
                   component: () =>
                     import(/* webpackChunkName: "p__datasource" */ '../datasource'),
-                  LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                  LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                     .default,
                 })
               : require('../datasource').default,
@@ -157,7 +157,7 @@ const routes = [
                   ? _dvaDynamic({
                       app: require('@tmp/dva').getApp(),
                       models: () => [
-                        import(/* webpackChunkName: 'p__system__company__list__model.ts' */ 'D:/vscode/ims-web/src/pages/system/company/list/model.ts').then(
+                        import(/* webpackChunkName: 'p__system__company__list__model.ts' */ 'C:/DEV/Vscode/ims-web/src/pages/system/company/list/model.ts').then(
                           m => {
                             return { namespace: 'model', ...m.default };
                           },
@@ -165,7 +165,7 @@ const routes = [
                       ],
                       component: () =>
                         import(/* webpackChunkName: "layouts__BasicLayout" */ '../system/company/list'),
-                      LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                      LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                         .default,
                     })
                   : require('../system/company/list').default,
@@ -179,7 +179,7 @@ const routes = [
                   ? _dvaDynamic({
                       app: require('@tmp/dva').getApp(),
                       models: () => [
-                        import(/* webpackChunkName: 'p__system__demo__demo__model.ts' */ 'D:/vscode/ims-web/src/pages/system/demo/demo/model.ts').then(
+                        import(/* webpackChunkName: 'p__system__demo__demo__model.ts' */ 'C:/DEV/Vscode/ims-web/src/pages/system/demo/demo/model.ts').then(
                           m => {
                             return { namespace: 'model', ...m.default };
                           },
@@ -187,7 +187,7 @@ const routes = [
                       ],
                       component: () =>
                         import(/* webpackChunkName: "layouts__BasicLayout" */ '../system/demo/demo'),
-                      LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                      LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                         .default,
                     })
                   : require('../system/demo/demo').default,
@@ -196,7 +196,7 @@ const routes = [
               {
                 component: () =>
                   React.createElement(
-                    require('D:/vscode/ims-web/node_modules/_umi-build-dev@1.18.5@umi-build-dev/lib/plugins/404/NotFound.js')
+                    require('C:/DEV/Vscode/ims-web/node_modules/_umi-build-dev@1.18.6@umi-build-dev/lib/plugins/404/NotFound.js')
                       .default,
                     { pagesPath: 'src/pages', hasRoutesInConfig: true },
                   ),
@@ -216,7 +216,7 @@ const routes = [
                   ? _dvaDynamic({
                       app: require('@tmp/dva').getApp(),
                       models: () => [
-                        import(/* webpackChunkName: 'p__process__ProcessList__model.ts' */ 'D:/vscode/ims-web/src/pages/process/ProcessList/model.ts').then(
+                        import(/* webpackChunkName: 'p__process__ProcessList__model.ts' */ 'C:/DEV/Vscode/ims-web/src/pages/process/ProcessList/model.ts').then(
                           m => {
                             return { namespace: 'model', ...m.default };
                           },
@@ -224,7 +224,7 @@ const routes = [
                       ],
                       component: () =>
                         import(/* webpackChunkName: "layouts__BasicLayout" */ '../process/ProcessList'),
-                      LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                      LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                         .default,
                     })
                   : require('../process/ProcessList').default,
@@ -238,7 +238,7 @@ const routes = [
                   ? _dvaDynamic({
                       app: require('@tmp/dva').getApp(),
                       models: () => [
-                        import(/* webpackChunkName: 'p__process__add__model.ts' */ 'D:/vscode/ims-web/src/pages/process/add/model.ts').then(
+                        import(/* webpackChunkName: 'p__process__add__model.ts' */ 'C:/DEV/Vscode/ims-web/src/pages/process/add/model.ts').then(
                           m => {
                             return { namespace: 'model', ...m.default };
                           },
@@ -246,7 +246,7 @@ const routes = [
                       ],
                       component: () =>
                         import(/* webpackChunkName: "layouts__BasicLayout" */ '../process/add'),
-                      LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                      LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                         .default,
                     })
                   : require('../process/add').default,
@@ -260,7 +260,7 @@ const routes = [
                   ? _dvaDynamic({
                       app: require('@tmp/dva').getApp(),
                       models: () => [
-                        import(/* webpackChunkName: 'p__process__FunctionList__model.ts' */ 'D:/vscode/ims-web/src/pages/process/FunctionList/model.ts').then(
+                        import(/* webpackChunkName: 'p__process__FunctionList__model.ts' */ 'C:/DEV/Vscode/ims-web/src/pages/process/FunctionList/model.ts').then(
                           m => {
                             return { namespace: 'model', ...m.default };
                           },
@@ -268,7 +268,7 @@ const routes = [
                       ],
                       component: () =>
                         import(/* webpackChunkName: "layouts__BasicLayout" */ '../process/FunctionList'),
-                      LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                      LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                         .default,
                     })
                   : require('../process/FunctionList').default,
@@ -282,7 +282,7 @@ const routes = [
                   ? _dvaDynamic({
                       component: () =>
                         import(/* webpackChunkName: "layouts__BasicLayout" */ '../process/ProLogList'),
-                      LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                      LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                         .default,
                     })
                   : require('../process/ProLogList').default,
@@ -291,7 +291,7 @@ const routes = [
               {
                 component: () =>
                   React.createElement(
-                    require('D:/vscode/ims-web/node_modules/_umi-build-dev@1.18.5@umi-build-dev/lib/plugins/404/NotFound.js')
+                    require('C:/DEV/Vscode/ims-web/node_modules/_umi-build-dev@1.18.6@umi-build-dev/lib/plugins/404/NotFound.js')
                       .default,
                     { pagesPath: 'src/pages', hasRoutesInConfig: true },
                   ),
@@ -311,7 +311,7 @@ const routes = [
                   ? _dvaDynamic({
                       app: require('@tmp/dva').getApp(),
                       models: () => [
-                        import(/* webpackChunkName: 'p__job__JobDefineAdd__model.ts' */ 'D:/vscode/ims-web/src/pages/job/JobDefineAdd/model.ts').then(
+                        import(/* webpackChunkName: 'p__job__JobDefineAdd__model.ts' */ 'C:/DEV/Vscode/ims-web/src/pages/job/JobDefineAdd/model.ts').then(
                           m => {
                             return { namespace: 'model', ...m.default };
                           },
@@ -319,7 +319,7 @@ const routes = [
                       ],
                       component: () =>
                         import(/* webpackChunkName: "layouts__BasicLayout" */ '../job/JobDefineAdd'),
-                      LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                      LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                         .default,
                     })
                   : require('../job/JobDefineAdd').default,
@@ -333,7 +333,7 @@ const routes = [
                   ? _dvaDynamic({
                       component: () =>
                         import(/* webpackChunkName: "layouts__BasicLayout" */ '../job/JobDefineList'),
-                      LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                      LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                         .default,
                     })
                   : require('../job/JobDefineList').default,
@@ -347,7 +347,7 @@ const routes = [
                   ? _dvaDynamic({
                       component: () =>
                         import(/* webpackChunkName: "layouts__BasicLayout" */ '../job/TimerList'),
-                      LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                      LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                         .default,
                     })
                   : require('../job/TimerList').default,
@@ -356,7 +356,7 @@ const routes = [
               {
                 component: () =>
                   React.createElement(
-                    require('D:/vscode/ims-web/node_modules/_umi-build-dev@1.18.5@umi-build-dev/lib/plugins/404/NotFound.js')
+                    require('C:/DEV/Vscode/ims-web/node_modules/_umi-build-dev@1.18.6@umi-build-dev/lib/plugins/404/NotFound.js')
                       .default,
                     { pagesPath: 'src/pages', hasRoutesInConfig: true },
                   ),
@@ -368,7 +368,7 @@ const routes = [
               ? _dvaDynamic({
                   component: () =>
                     import(/* webpackChunkName: "p__404" */ '../404'),
-                  LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+                  LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                     .default,
                 })
               : require('../404').default,
@@ -377,7 +377,7 @@ const routes = [
           {
             component: () =>
               React.createElement(
-                require('D:/vscode/ims-web/node_modules/_umi-build-dev@1.18.5@umi-build-dev/lib/plugins/404/NotFound.js')
+                require('C:/DEV/Vscode/ims-web/node_modules/_umi-build-dev@1.18.6@umi-build-dev/lib/plugins/404/NotFound.js')
                   .default,
                 { pagesPath: 'src/pages', hasRoutesInConfig: true },
               ),
@@ -389,7 +389,7 @@ const routes = [
           ? _dvaDynamic({
               component: () =>
                 import(/* webpackChunkName: "p__404" */ '../404'),
-              LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+              LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
                 .default,
             })
           : require('../404').default,
@@ -398,7 +398,7 @@ const routes = [
       {
         component: () =>
           React.createElement(
-            require('D:/vscode/ims-web/node_modules/_umi-build-dev@1.18.5@umi-build-dev/lib/plugins/404/NotFound.js')
+            require('C:/DEV/Vscode/ims-web/node_modules/_umi-build-dev@1.18.6@umi-build-dev/lib/plugins/404/NotFound.js')
               .default,
             { pagesPath: 'src/pages', hasRoutesInConfig: true },
           ),
@@ -409,7 +409,7 @@ const routes = [
     component: __IS_BROWSER
       ? _dvaDynamic({
           component: () => import(/* webpackChunkName: "p__404" */ '../404'),
-          LoadingComponent: require('D:/vscode/ims-web/src/components/PageLoading/index')
+          LoadingComponent: require('C:/DEV/Vscode/ims-web/src/components/PageLoading/index')
             .default,
         })
       : require('../404').default,
@@ -418,7 +418,7 @@ const routes = [
   {
     component: () =>
       React.createElement(
-        require('D:/vscode/ims-web/node_modules/_umi-build-dev@1.18.5@umi-build-dev/lib/plugins/404/NotFound.js')
+        require('C:/DEV/Vscode/ims-web/node_modules/_umi-build-dev@1.18.6@umi-build-dev/lib/plugins/404/NotFound.js')
           .default,
         { pagesPath: 'src/pages', hasRoutesInConfig: true },
       ),
