@@ -8,13 +8,13 @@ export async function queryRule(params?: TableListParams) {
     console.log('有查询条件加载数据');
     return request("/process/queryProLog", {
       method: "POST",
-      data: params,
+      data: params, 
     });
   }
 }
 
 export async function getById(id: number) {
-  return request("/process/getLogById", {
+  return request("/process/getLogById", { 
     method: "POST",
     params: { id },
   });
