@@ -14,7 +14,7 @@ export async function queryRule(params?: TableListParams) {
 }
 
 export async function getById(id: number) {
-  return request("/process/getLogById", { 
+  return request("/process/getLogById", {
     method: "POST",
     params: { id },
   });
