@@ -135,6 +135,7 @@ const TableList: React.FC<{}> = () => {
           <a
             onClick={async () => {
               const res = await reset(record.id);
+              console.log(res);
               setUseHandleResult(res);
               handleResultModalVisible(true);
             }}

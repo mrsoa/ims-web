@@ -29,14 +29,14 @@ const HandleResult: React.FC<ResultProps> = (props) => {
       <Result
         status={status}
         title={result && result.message ? result.message : "操作失败"}
-        subTitle={result && result.data ? result.data : "操作失败"}
+        subTitle="重试完成"
         extra={[
           <Button type="primary" key="console" onClick={() => onCancel()}>
             关 闭
           </Button>,
         ]}
       >
-        123456789
+        {JSON.stringify(result)}
       </Result>
     </Modal>
   );
