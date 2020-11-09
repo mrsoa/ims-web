@@ -2,7 +2,9 @@ import request from "@/utils/request";
 import { TableListParams } from "./data.d";
 
 export async function queryRule(params?: TableListParams) {
-  if(params.businessKey==undefined && params.createTimeFrom ===undefined && params.createTimeTo===undefined && params.functionCode===undefined && params.status===undefined){
+  console.log('参数信息为：',params);
+  if(params.key==undefined && params.businessKey==undefined && params.createTimeFrom ===undefined && params.createTimeTo===undefined && params.functionCode===undefined && params.status===undefined){
+    console.log("没有条件无需查询");
     return {};
   }else{
     console.log('有查询条件加载数据');
